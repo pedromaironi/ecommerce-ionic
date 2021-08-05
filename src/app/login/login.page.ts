@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { AuthService } from '../services/auth-service.service';
+import { AuthService } from '../services/AuthService/auth-service.service';
 import { UtilService } from '../services/util.service';
 
 @Component({
@@ -10,6 +10,8 @@ import { UtilService } from '../services/util.service';
 })
 export class LoginPage implements OnInit {
   arrayUsers: any;
+  email: string;
+  password: string;
 
   constructor(
     private util: UtilService,
@@ -18,32 +20,21 @@ export class LoginPage implements OnInit {
   ) {}
 
   ionViewDidLoad() {
-    this.getUsers();//Llamamos a la función getPost cuando la vista se cargue
+    this.getUsers(); //Llamamos a la función getPost cuando la vista se cargue
   }
 
   ngOnInit() {}
 
   getUsers() {
-    this.authService.getUsers()
-      .toPromise().then((value) => {
-        console.log(value);
-        this.arrayUsers = value;
-      });
+    this.authService
+      .getUsers();
+
   }
 
   login() {
-    // this.authService.getUsers()
-    // .then(data => {
-    //   this.arrayUsers = data;
-    // });
-    console.log(this.arrayUsers);
-    this.authService.getUsers()
-    .toPromise().then((value) => {
-      console.log(value);
-      this.arrayUsers = value;
-    });
+
     // Enabling Side Menu
-    // this.util.setMenuState(true);
+    this.util.setMenuState(true);
     // this.navCtrl.navigateRoot('/home', { animationDirection: 'forward' });
   }
 }

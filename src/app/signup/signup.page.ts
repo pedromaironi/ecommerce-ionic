@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { AuthService } from '../services/AuthService/auth-service.service';
 
 @Component({
   selector: 'app-signup',
@@ -14,34 +16,34 @@ export class SignupPage implements OnInit {
   url = 'https://ecommercepedro.herokuapp.com';
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private navCtrl: NavController,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {}
 
   signUp() {
-    console.log(this.username);
-    console.log(this.email);
-    console.log(this.password);
-    // this.authService.registerUsers(this.username, this.email, this.password).toPromise().then((value) => {
-    //   console.log(value);
-    // });
-    const data = {
-      name: this.username,
-      email: this.email,
-      password: this.password,
-    };
 
-    const header = new HttpHeaders().set(
-      'Content-Type',
-      'application/x-www-form-urlencoded'
-    );
+    if ( !(this.username !== '' && this.email  !== '' && this.password !== '') ) {
+      const data = {
+        username: this.username,
+        email: this.email,
+        password: this.password,
+      };
 
-    // eslint-disable-next-line @typescript-eslint/no-shadow
-    const response = this.httpClient.post(this.url + '/users', data).toPromise().then((data: any) => {
-      console.log(data);
-    });
+      // eslint-disable-next-line @typescript-eslint/no-shadow
+      // const response = this.httpClient.post(this.url + '/users', data).toPromise().then((data: any) => {
+      //   console.log(data);
+      // });
 
-    console.log(response);
+      const response = this.authService.registerUsers(data).toPromise().then((datas) => {
+        console.log(datas);
+      });
+      console.log(response);
+    }
+
+    this.navCtrl.navigateRoot('/home', { animationDirection: 'forward' });
+
   }
 }

@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
-import { AuthService } from '../services/auth-service.service';
+import { AuthService } from '../services/AuthService/auth-service.service';
 
 @NgModule({
   imports: [

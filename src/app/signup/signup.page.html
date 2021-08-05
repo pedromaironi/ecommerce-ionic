@@ -10,27 +10,27 @@
 
 <ion-content class="ion-padding">
   <div class="ion-padding container">
-    <h1>Signup</h1>
+    <h1 >Registro</h1>
 
     <div class="form-container">
       <ion-item>
-        <ion-label position="floating">Name</ion-label>
+        <ion-label position="floating">Username</ion-label>
         <ion-input type="text" [(ngModel)]="username" id="input"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Email</ion-label>
+        <ion-label position="floating">Correo</ion-label>
         <ion-input type="text" [(ngModel)]="email" id="input"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Password</ion-label>
+        <ion-label position="floating">Contraseña</ion-label>
         <ion-input type="password" type="text" [(ngModel)]="password" id="input"></ion-input>
         <ion-icon name="eye" slot="end"></ion-icon>
       </ion-item>
 
-      <ion-button expand="block" class="main-button" (click)="signUp()">Sign Up</ion-button>
+      <ion-button expand="block" class="main-button" (click)="signUp()">Registro</ion-button>
 
       <div class="sign-up">
-        Already have an account? <ion-button color="dark" fill="clear" routerLink="/login" routerDirection="forward">Sign in</ion-button>
+        No tienes una cuenta? <ion-button color="dark" fill="clear" routerLink="/login" routerDirection="forward">Iniciar Sesión</ion-button>
       </div>
     </div>
   </div>
