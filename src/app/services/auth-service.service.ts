@@ -20,14 +20,14 @@ export class AuthService {
 
   registerUsers(username: string, email: string, password: string) {
     return this.http.post(this.url + '/users', {
+      body: new HttpParams()
+        .set('name', username)
+        .set('email', email)
+        .set('password', password),
       headers: new HttpHeaders().set(
         'Content-Type',
         'application/x-www-form-urlencoded'
       ),
-      body: new HttpParams()
-        .set('username', username)
-        .set('email', email)
-        .set('password', password),
     });
   }
 }

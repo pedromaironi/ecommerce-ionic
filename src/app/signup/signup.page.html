@@ -19,15 +19,15 @@
       </ion-item>
       <ion-item>
         <ion-label position="floating">Email</ion-label>
-        <ion-input></ion-input>
+        <ion-input type="text" [(ngModel)]="email" id="input"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Password</ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input type="password" type="text" [(ngModel)]="password" id="input"></ion-input>
         <ion-icon name="eye" slot="end"></ion-icon>
       </ion-item>
 
-      <ion-button expand="block" class="main-button">Sign Up</ion-button>
+      <ion-button expand="block" class="main-button" (click)="signUp()">Sign Up</ion-button>
 
       <div class="sign-up">
         Already have an account? <ion-button color="dark" fill="clear" routerLink="/login" routerDirection="forward">Sign in</ion-button>

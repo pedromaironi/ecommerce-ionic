@@ -8,6 +8,7 @@ import { SignupPageRoutingModule } from './signup-routing.module';
 
 import { SignupPage } from './signup.page';
 import { AuthService } from '../services/auth-service.service';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -17,7 +18,6 @@ import { AuthService } from '../services/auth-service.service';
     SignupPageRoutingModule
   ],
   providers: [
-    AuthService
   ],
   declarations: [SignupPage]
 })
