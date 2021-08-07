@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { Categories } from '../core/models/categories.interface';
 import { Products } from '../core/models/product.interface';
 import { CategoriesService } from '../core/services/categories/categories.service';
 import { DataService } from '../core/services/categories/data.service';
+import { ProductsObject } from '../core/services/products/products';
 import { ProductsService } from '../core/services/products/products.service';
 
 @Component({
@@ -16,13 +18,15 @@ export class HomePage implements OnInit {
   public bestSellProducts = [];
   itemsCategories: Categories;
   itemsProducts: Products;
-
+  product: ProductsObject;
 
   constructor(
     private data: DataService,
     private categoriesService: CategoriesService,
     private productsService: ProductsService,
-  ) {}
+  ) {
+    this.product = new ProductsObject();
+  }
 
   ngOnInit()  {
     // this.categories = this.data.getCategories();
@@ -41,12 +45,19 @@ export class HomePage implements OnInit {
       for ( const itemsProducts of Object.keys(data)) {
         console.log(data[itemsProducts]);
         this.featuredProducts = data[itemsProducts];
+        this.bestSellProducts = data[itemsProducts];
       }
     });
-
-
-    // console.log(    this.categories );
-    // this.featuredProducts = this.data.getFeaturedProducts();
-    this.bestSellProducts = this.data.getBestSellProducts();
   }
+
+  goToItemsDetails(product , nameProduct: string) {
+    console.log(product);
+    // console.log(nameProduct);
+    // this.navCtrl. ('/item-details');
+    // this.navCtrl.navigateRoot('/itemdetails');
+    // this.navCtrl.navigateForward('/itemdetails', product);
+    // eslint-disable-next-line no-underscore-dangle
+    this.product._product = product;
+  }
+
 }

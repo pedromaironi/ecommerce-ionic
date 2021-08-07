@@ -4,10 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { HomePageRoutingModule } from './home-routing.module';
+import { ItemDetailsPageRoutingModule } from './item-details-routing.module';
 
-import { HomePage } from './home.page';
-import { CategoriesService } from '../core/services/categories/categories.service';
+import { ItemDetailsPage } from './item-details.page';
 import { ProductsService } from '../core/services/products/products.service';
 import { StorageService } from '../core/services/storage.service';
 
@@ -16,12 +15,12 @@ import { StorageService } from '../core/services/storage.service';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    ItemDetailsPageRoutingModule
   ],
   providers: [
-    CategoriesService,
     ProductsService,
+    StorageService
   ],
-  declarations: [HomePage]
+  declarations: [ItemDetailsPage]
 })
-export class HomePageModule {}
+export class ItemDetailsPageModule {}

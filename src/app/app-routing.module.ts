@@ -28,6 +28,21 @@ const routes: Routes = [
     loadChildren: () =>
       import('./home/home.module').then((m) => m.HomePageModule),
   },
+  {
+    path: 'itemdetails',
+    loadChildren: () =>
+      import('./item-details/item-details.module').then((m) => m.ItemDetailsPageModule),
+  },
+  {
+    path: 'cart',
+    loadChildren: () =>
+      import('./my-cart/my-cart.module').then((m) => m.MyCartPageModule),
+  },
+  {
+    path: 'checkout',
+    loadChildren: () =>
+      import('./my-cart/my-cart.module').then((m) => m.MyCartPageModule),
+  },
 ];
 @NgModule({
   imports: [

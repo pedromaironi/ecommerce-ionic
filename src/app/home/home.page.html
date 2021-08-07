@@ -12,7 +12,7 @@
       </ion-item>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button class="notification">
+      <ion-button class="notification" routerLink="/cart" routerDirection="forward" >
         <ion-icon name="cart-outline" color="dark"></ion-icon>
         <span>&nbsp;</span>
       </ion-button>
@@ -57,7 +57,7 @@
   <div class="product-slider ion-padding-start">
     <ion-slides [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }">
       <ion-slide *ngFor="let product of featuredProducts">
-        <ion-col class="ion-text-left" routerLink="/item-details" routerDirection="forward">
+        <ion-col class="ion-text-left" routerLink="/itemdetails" routerDirection="forward" (click)="goToItemsDetails(product, product.name)">
           <img src="{{ product.image }}" />
           <p>${{ product.price }}</p>
           <h6>{{ product.name }}</h6>
@@ -74,7 +74,7 @@
   <div class="product-slider ion-padding-start">
     <ion-slides [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }">
       <ion-slide *ngFor="let product of bestSellProducts">
-        <ion-col class="ion-text-left" routerLink="/item-details" routerDirection="forward">
+        <ion-col class="ion-text-left" routerLink="/itemdetails" routerDirection="forward">
           <img src="{{ product.image }}" />
           <p>${{ product.price }}</p>
           <h6>{{ product.name }}</h6>

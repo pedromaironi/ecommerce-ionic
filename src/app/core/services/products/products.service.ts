@@ -9,7 +9,8 @@ export class ProductsService {
   url = 'https://ecommercepedro.herokuapp.com';
   products: Products;
 
-  constructor( private http: HttpClient ) { }
+  constructor(private http: HttpClient) {
+  }
 
   getAllProducts() {
     return this.http.get<Products[]>(this.url + '/api/products', {
