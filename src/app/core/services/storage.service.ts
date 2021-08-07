@@ -17,10 +17,11 @@ export class StorageService {
   }
 
   removeProductFromCart() {
-
   }
 
   async initStorage() {
     await this.storage.create();
   }
+
+
 }
