@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
 import { CategoriesService } from '../core/services/categories/categories.service';
+import { ProductsService } from '../core/services/products/products.service';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { CategoriesService } from '../core/services/categories/categories.servic
     HomePageRoutingModule
   ],
   providers: [
-    CategoriesService
+    CategoriesService,
+    ProductsService,
   ],
   declarations: [HomePage]
 })
