@@ -11,7 +11,7 @@ export class AuthService {
   constructor(public http: HttpClient) {}
 
   getUsers() {
-    return this.http.get(this.url + '/users', {
+    return this.http.get(this.url + '/api/users', {
       headers: new HttpHeaders().set(
         'Content-Type',
         'application/x-www-form-urlencoded'

@@ -32,7 +32,9 @@
               }
             ],
             "styles": ["src/theme/variables.scss", "src/global.scss"],
-            "scripts": [],
+            "scripts": [
+              "node_modules/boxicons/css/boxicons.min.css"
+            ],
             "aot": false,
             "vendorChunk": true,
             "extractLicenses": false,

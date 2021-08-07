@@ -2,16 +2,22 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button>
-        <img src="../../assets/menu_bar.svg" />
+        <ion-icon name="menu" color="dark"></ion-icon>
       </ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="toolbar-content">
+      <ion-item lines="none">
+        <ion-input placeholder="Buscar productos"></ion-input>
+        <ion-icon name="search-outline" slot="start"></ion-icon>
+      </ion-item>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button class="notification">
-        <ion-icon name="notifications-outline" color="dark"></ion-icon>
+        <ion-icon name="cart-outline" color="dark"></ion-icon>
         <span>&nbsp;</span>
       </ion-button>
       <ion-button class="filter">
-        <ion-icon name="funnel-outline" color="dark"></ion-icon>
+        <ion-icon name="person-outline" color="dark"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -20,21 +26,23 @@
 <ion-content>
   <div class="search ion-padding">
     <ion-item lines="none">
-      <ion-input placeholder="Search Your Product"></ion-input>
+      <ion-input placeholder="Buscar productos"></ion-input>
       <ion-icon name="search-outline" slot="start"></ion-icon>
     </ion-item>
   </div>
 
   <div class="title ion-padding">
-    <h2>Categories</h2>
-    <p>See all</p>
+    <h2 >Categorias</h2>
+    <p>Ver más</p>
   </div>
 
   <div class="category-slider ion-padding-start">
     <ion-slides [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }">
       <ion-slide *ngFor="let category of categories">
-        <ion-col>
+        <!-- <ion-row>
           <h4>{{ category.name }}</h4>
+        </ion-row> -->
+        <ion-col >
           <img src="{{ category.image }}" />
         </ion-col>
       </ion-slide>
@@ -42,8 +50,8 @@
   </div>
 
   <div class="title ion-padding">
-    <h2 class="font-bold">Featured</h2>
-    <p>See all</p>
+    <h2 class="font-bold">Productos</h2>
+    <p>Ver más</p>
   </div>
 
   <div class="product-slider ion-padding-start">
@@ -59,8 +67,8 @@
   </div>
 
   <div class="title ion-padding">
-    <h2 class="font-bold">Best Sell</h2>
-    <p>See all</p>
+    <h2 class="font-bold">Recomendados</h2>
+    <p>Ver más</p>
   </div>
 
   <div class="product-slider ion-padding-start">

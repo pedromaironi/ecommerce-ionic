@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { AuthService } from '../services/AuthService/auth-service.service';
+import { AuthService } from '../core/services/authentification/auth-service.service';
 
 @Component({
   selector: 'app-signup',

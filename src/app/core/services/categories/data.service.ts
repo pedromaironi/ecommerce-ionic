@@ -54,19 +54,19 @@ export class DataService {
       id: 1,
       name: 'Womens T-Shirt',
       price: 55,
-      image: '../../assets/products/prod-1.png'
+      image: '../../assets/refrescos/7up-12oz.jpg'
     };
     const prod2: IProduct = {
       id: 2,
       name: 'Mens T-Shirt',
       price: 34,
-      image: '../../assets/products/prod-2.png'
+      image: '../../assets/refrescos/cocacola-12oz.jpg'
     };
     const prod3: IProduct = {
       id: 1,
       name: 'Womens T-Shirt',
       price: 40,
-      image: '../../assets/products/prod-3.png'
+      image: '../../assets/vinos/beronia-crianza.jpg'
     };
 
     products.push(prod1, prod2, prod3);

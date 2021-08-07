@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
+import { CategoriesService } from '../core/services/categories/categories.service';
 
 @NgModule({
   imports: [
@@ -14,6 +15,9 @@ import { HomePage } from './home.page';
     FormsModule,
     IonicModule,
     HomePageRoutingModule
+  ],
+  providers: [
+    CategoriesService
   ],
   declarations: [HomePage]
 })

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { AuthService } from '../services/AuthService/auth-service.service';
+import { AuthService } from '../core/services/authentification/auth-service.service';
 import { UtilService } from '../services/util.service';
 
 @Component({
@@ -34,7 +34,7 @@ export class LoginPage implements OnInit {
   login() {
 
     // Enabling Side Menu
-    this.util.setMenuState(true);
-    // this.navCtrl.navigateRoot('/home', { animationDirection: 'forward' });
+    // this.util.setMenuState(true);
+    this.navCtrl.navigateRoot('/home', { animationDirection: 'forward' });
   }
 }
