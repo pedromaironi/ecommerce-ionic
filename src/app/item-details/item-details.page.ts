@@ -5,6 +5,7 @@ import { Products } from '../core/models/product.interface';
 import { ProductsObject } from '../core/services/products/products';
 import { ProductsService } from '../core/services/products/products.service';
 import { Storage } from '@ionic/storage-angular';
+import { StorageService } from '../core/services/storage.service';
 
 @Component({
   selector: 'app-item-details',
@@ -23,7 +24,7 @@ export class ItemDetailsPage implements OnInit {
   constructor(
     private animatioCntrl: AnimationController,
     private productService: ProductsService,
-    private storage: Storage
+    private storage: StorageService
   ) {
     this.product = new ProductsObject();
   }
@@ -38,7 +39,7 @@ export class ItemDetailsPage implements OnInit {
     console.log(product);
     const arrayOfProducts = [];
     arrayOfProducts.push(product);
-    localStorage.setItem('cart', JSON.stringify(this.featuredProducts));
+    localStorage.setItem(product.id, JSON.stringify(product));
   }
 
   segmentChanged(e: any) {
