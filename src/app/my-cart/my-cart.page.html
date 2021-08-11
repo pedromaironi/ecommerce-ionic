@@ -17,7 +17,7 @@
 <ion-content fullscreen="true">
   <h1 class="title">Cart</h1>
 
-  <div class="cart-items">
+  <div class="cart-items" *ngIf="cartCount">
     <ion-card mode="ios" *ngFor="let product of products">
       <ion-card-content>
         <div class="item-img">
@@ -30,23 +30,32 @@
           <p>${{product.price}}</p>
 
           <div class="qty-selector">
-            <ion-button fill="clear">-</ion-button>
-            <ion-label>1</ion-label>
-            <ion-button fill="clear">+</ion-button>
+            <ion-button fill="clear" (click)="decreaseQuantity(product)">-</ion-button>
+            <ion-label>{{product.quantity}}</ion-label>
+            <ion-button fill="clear" (click)="increaseQuantity(product)">+</ion-button>
           </div>
+
         </div>
       </ion-card-content>
     </ion-card>
 
   </div>
 
-  <h2 class="title">Total</h2>
-  <h3 class="title">{{productTotal}}</h3>
+  <h2 class="title" *ngIf="cartCount">Total</h2>
+  <h3 class="title" *ngIf="cartCount">{{productTotal | number:'2.1-4'}}</h3>
+  <div class="content-details" *ngIf="!cartCount">
+    <div class="content-details__title">
+      Aun no has agregado productos a tu carrito.
+    </div>
+  </div>
 </ion-content>
 
-<ion-footer translucent="true" class="ion-no-border" mode="md">
+
+
+<ion-footer translucent="true" class="ion-no-border" mode="md"
+  *ngIf="cartCount">
   <ion-toolbar color="translucent">
-    <ion-button expand="block" class="main-button" routerLink="/checkout"
+    <ion-button expand="block" class="main-button" routerLink="/confirm" (click)="addOrder()"
       routerDirection="forward">Continue</ion-button>
   </ion-toolbar>
 </ion-footer>

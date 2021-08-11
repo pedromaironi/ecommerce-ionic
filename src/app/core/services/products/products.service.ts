@@ -3,14 +3,13 @@ import { Injectable } from '@angular/core';
 import { Products } from '../../models/product.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductsService {
   url = 'https://ecommercepedro.herokuapp.com';
   products: Products;
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   getAllProducts() {
     return this.http.get<Products[]>(this.url + '/api/products', {
@@ -21,5 +20,12 @@ export class ProductsService {
     });
   }
 
-
+  findById( idProduct: string) {
+    return this.http.get<Products[]>(this.url + '/api/products/' + idProduct, {
+      headers: new HttpHeaders().set(
+        'Content-Type',
+        'application/x-www-form-urlencoded'
+      ),
+    });
+  }
 }

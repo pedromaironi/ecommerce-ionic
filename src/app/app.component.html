@@ -1,41 +1,36 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <!-- [disabled]="!isMenuEnabled" -->
-    <ion-menu contentId="main-content" type="overlay" >
+    <ion-menu contentId="main-content" type="overlay" [disabled]="!isMenuEnabled">
       <ion-content>
         <div class="main-list">
           <ion-list id="inbox-list">
+
             <ion-menu-toggle auto-hide="false">
-              <ion-item lines="none" detail="false" class="ion-text-center" >
+              <ion-item lines="none" (click)="navigate('/home', 1)" detail="false" class="ion-text-center" [class.selected]="selectedIndex === 1">
                 <ion-label>Home</ion-label>
               </ion-item>
             </ion-menu-toggle>
             <ion-menu-toggle auto-hide="false">
-              <ion-item lines="none" detail="false" class="ion-text-center">
-                <ion-label>Perfil</ion-label>
+              <ion-item lines="none" (click)="navigate('/profile', 2)" detail="false" class="ion-text-center" [class.selected]="selectedIndex === 2">
+                <ion-label>Profile</ion-label>
               </ion-item>
             </ion-menu-toggle>
             <ion-menu-toggle auto-hide="false">
-              <ion-item lines="none" detail="false" class="ion-text-center">
-                <ion-label>Mi Carrito</ion-label>
+              <ion-item lines="none" (click)="navigate('/my-cart', 3)" detail="false" class="ion-text-center" [class.selected]="selectedIndex === 3">
+                <ion-label>My Cart</ion-label>
               </ion-item>
             </ion-menu-toggle>
-            <!-- <ion-menu-toggle auto-hide="false">
-              <ion-item lines="none" detail="false" class="ion-text-center">
-                <ion-label>Favorite</ion-label>
-              </ion-item>
-            </ion-menu-toggle> -->
             <ion-menu-toggle auto-hide="false">
-              <ion-item lines="none" detail="false" class="ion-text-center">
-                <ion-label>Mis ordenes</ion-label>
+              <ion-item lines="none" (click)="navigate('/my-orders', 5)" detail="false" class="ion-text-center" [class.selected]="selectedIndex === 5">
+                <ion-label>My Orders</ion-label>
               </ion-item>
             </ion-menu-toggle>
           </ion-list>
 
           <!-- Close Button -->
-          <!-- <ion-button fill="clear" color="dark">
+          <ion-button fill="clear" color="dark" (click)="close()">
             <ion-icon name="close-circle-outline"></ion-icon>
-          </ion-button> -->
+          </ion-button>
         </div>
       </ion-content>
     </ion-menu>
