@@ -11,15 +11,19 @@
 <ion-content class="ion-padding">
   <div class="ion-padding container">
     <h1>Login</h1>
-
     <div class="form-container">
+      <div class="form-validate" *ngIf="bandValidate">
+        Usuario o clave inválida. ¡Inténtalo de nuevo!
+      </div>
       <ion-item>
         <ion-label position="floating">Correo electronico</ion-label>
-        <ion-input type="text" type="text" [(ngModel)]="email" id="input"></ion-input>
+        <ion-input type="text" type="text" [(ngModel)]="email" id="input"
+          (click)="validateInputs" (keyup.enter)="login()"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Contraseña</ion-label>
-        <ion-input type="password" [(ngModel)]="password" id="input"></ion-input>
+        <ion-input type="password" [(ngModel)]="password" id="input"
+          (click)="validateInputs" (keyup.enter)="login()"></ion-input>
         <ion-icon name="eye" slot="end"></ion-icon>
       </ion-item>
 

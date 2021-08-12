@@ -13,17 +13,20 @@
     <h1 >Registro</h1>
 
     <div class="form-container">
+      <div class="form-validate" *ngIf="bandValidate">
+        Username, Email o Clave inválida. ¡Inténtalo de nuevo!
+      </div>
       <ion-item>
         <ion-label position="floating">Username</ion-label>
-        <ion-input type="text" [(ngModel)]="username" id="input"></ion-input>
+        <ion-input type="text" [(ngModel)]="username" id="input" (keyup.enter)="signUp()"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Correo</ion-label>
-        <ion-input type="text" [(ngModel)]="email" id="input"></ion-input>
+        <ion-input type="text" [(ngModel)]="email" id="input" (keyup.enter)="signUp()"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Contraseña</ion-label>
-        <ion-input type="password" type="text" [(ngModel)]="password" id="input"></ion-input>
+        <ion-input type="password" type="text" [(ngModel)]="password" id="input" (keyup.enter)="signUp()"></ion-input>
         <ion-icon name="eye" slot="end"></ion-icon>
       </ion-item>
 

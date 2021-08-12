@@ -11,14 +11,12 @@ export class AuthService {
   constructor(public http: HttpClient) {}
 
   getUsers() {
-    return this.http.get(this.url + '/api/users', {
+    return this.http.get<Users[]>(this.url + '/api/users', {
       headers: new HttpHeaders().set(
         'Content-Type',
         'application/x-www-form-urlencoded'
       ),
-    }).subscribe((data: Users) => {
-      this.users = data;
-    } );
+    });
   }
 
   registerUsers(users: Users) {
@@ -28,6 +26,6 @@ export class AuthService {
     //   password,
     // };
 
-    return this.http.post(this.url + '/users', users);
+    return this.http.post<Users>(this.url + '/api/users', users);
   }
 }

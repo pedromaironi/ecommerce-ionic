@@ -12,8 +12,8 @@ export class SignupPage implements OnInit {
   username: string;
   email: string;
   password: string;
-  http: any;
-  url = 'https://ecommercepedro.herokuapp.com';
+  bandLoggin;
+  bandValidate = false;
 
   constructor(
     private httpClient: HttpClient,
@@ -24,26 +24,27 @@ export class SignupPage implements OnInit {
   ngOnInit() {}
 
   signUp() {
-
-    if ( !(this.username !== '' && this.email  !== '' && this.password !== '') ) {
+    if (this.email !== undefined && this.password !== undefined && this.username) {
       const data = {
-        username: this.username,
+        name: this.username,
         email: this.email,
         password: this.password,
       };
-
-      // eslint-disable-next-line @typescript-eslint/no-shadow
-      // const response = this.httpClient.post(this.url + '/users', data).toPromise().then((data: any) => {
-      //   console.log(data);
-      // });
-
-      const response = this.authService.registerUsers(data).toPromise().then((datas) => {
-        console.log(datas);
-      });
+      const response = this.authService
+        .registerUsers(data)
+        .toPromise()
+        .then((datas) => {
+          console.log(datas);
+        });
       console.log(response);
+    } else {
+      console.log('as');
+      this.bandLoggin = false;
+      this.bandValidate = true;
     }
 
-    this.navCtrl.navigateRoot('/home', { animationDirection: 'forward' });
-
+    if (this.bandLoggin) {
+      this.navCtrl.navigateRoot('/home', { animationDirection: 'forward' });
+    }
   }
 }

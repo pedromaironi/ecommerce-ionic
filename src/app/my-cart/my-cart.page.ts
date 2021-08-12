@@ -30,10 +30,25 @@ export class MyCartPage implements OnInit {
   }
 
   initCart() {
-    if (localStorage.length > 0) {
+    let bandVerifyLength = false;
+
+    if (localStorage.length === 1) {
+      if (Object.keys(localStorage).toString() === 'authentication') {
+        console.log(true);
+        bandVerifyLength = true;
+      }
+    }
+    if (localStorage.length > 0 && bandVerifyLength === false) {
       this.cartCount = true;
       for (const items of Object.keys(localStorage)) {
-        this.products.push(JSON.parse(localStorage[items]));
+        // console.log(items);
+        if (items === 'authentication') {
+          // console.log('a');
+          this.cartCount = false;
+        } else {
+          this.cartCount = true;
+          this.products.push(JSON.parse(localStorage[items]));
+        }
       }
       for (this.Items of this.products) {
         this.totalPaid.push(Number.parseFloat(this.Items.price));
@@ -57,7 +72,9 @@ export class MyCartPage implements OnInit {
         // console.log(this.Items);
         // console.log(this.i);
         if (this.Items.name === product.name) {
-          product.quantity = Number.parseFloat(product.quantity.toString()) - Number.parseFloat('1');
+          product.quantity =
+            Number.parseFloat(product.quantity.toString()) -
+            Number.parseFloat('1');
           const productNew = [];
           await this.ProductService.findById(this.Items._id)
             .toPromise()
@@ -90,10 +107,14 @@ export class MyCartPage implements OnInit {
         this.totalPaid.push(Number.parseFloat(this.Items.price));
       }
       this.productTotal = this.totalPaid.reduce((a, b) => a + b);
+    } else {
+      localStorage.removeItem(product.id);
+      this.products = [];
+      this.initCart();
     }
   }
 
-  async increaseQuantity( product: Products) {
+  async increaseQuantity(product: Products) {
     const arrayNew = [];
     let priceProduct: number;
     const totalMultiplied = [];
@@ -105,7 +126,9 @@ export class MyCartPage implements OnInit {
       // console.log(this.Items);
       // console.log(this.i);
       if (this.Items.name === product.name) {
-        product.quantity = Number.parseFloat(product.quantity.toString()) + Number.parseFloat('1');
+        product.quantity =
+          Number.parseFloat(product.quantity.toString()) +
+          Number.parseFloat('1');
         const productNew = [];
         await this.ProductService.findById(this.Items._id)
           .toPromise()

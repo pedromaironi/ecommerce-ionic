@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Users } from '../core/models/user.interface';
 
 
 @Component({
@@ -9,13 +10,19 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ProfilePage implements OnInit {
 
+  user: Users;
   uid: any;
   item: any;
   anuncios: any;
-  empty: Boolean;
+  // empty: Boolean;
 
   constructor(private rout: Router ) {
+    this.initProfile();
+  }
 
+  initProfile() {
+    console.log();
+    this.user = JSON.parse(localStorage.getItem('authentication'));
   }
 
   // enableDark() {
@@ -76,9 +83,10 @@ export class ProfilePage implements OnInit {
     this.rout.navigateByUrl(`/edit-profile`);
   }
 
-  async signOut() {
+  signOut() {
     // const res = await this.aut.auth.signOut();
     // console.log(res);
+    localStorage.removeItem('authentication');
     this.rout.navigateByUrl('/');
   }
 
