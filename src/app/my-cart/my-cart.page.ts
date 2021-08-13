@@ -1,8 +1,11 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { Products } from '../core/models/product.interface';
 import { CartService } from '../core/services/cart/cart.service';
+import { OrderService } from '../core/services/orders/order.service';
 import { ProductsService } from '../core/services/products/products.service';
 
 @Component({
@@ -22,7 +25,10 @@ export class MyCartPage implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private ProductService: ProductsService
+    private ProductService: ProductsService,
+    private alertController: AlertController,
+    private orderService: OrderService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -59,13 +65,10 @@ export class MyCartPage implements OnInit {
     }
   }
 
-  async decreaseQuantity(product: Products) {
+  async decreaseQuantity(product: Products, cant) {
     const arrayNew = [];
     let priceProduct: number;
     const totalMultiplied = [];
-    // console.log(this.products);
-    // console.log(product.price * this.quantity);
-    // console.log(product.name);
 
     if (product.quantity > 1) {
       for (this.Items of this.products) {
@@ -164,34 +167,55 @@ export class MyCartPage implements OnInit {
   }
 
   addOrder() {
-    console.log(this.products[0]);
+    this.presentAlertConfirm();
   }
-  // pay(){
-  //     this.http.post<any>('http://157.230.27.240:3000/', {total: this.total*100})
-  //     .subscribe(data => {
-  //       console.log(data);
-  //     });
 
-  //     let items = this.cartService.getCart();
-  //     for(let obj of items){
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Confirmación de orden',
+      message: '¿Seguro que quieres realizar esta orden?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          },
+        },
+        {
+          text: 'Realizar orden',
+          handler: () => {
+            console.log('Confirm Okay');
+            this.router.navigateByUrl('/confirm');
+            this.createOrder();
+          },
+        },
+      ],
+    });
 
-  //       obj.hour = this.today
-  //       console.log(obj.hour)
-  //       this.afAuth.authState.subscribe(auth =>{
-  //         this.afDatabase.list(`oders/${auth.uid}`).push(obj); // sauvegarde les data dans la database
-  //       })
-  //     }
+    await alert.present();
+  }
 
-  //     this.router.navigate(['payment'])
+  createOrder() {
+    this.orderService
+      .createNewOrder(this.products, this.productTotal)
+      .subscribe((data) => {
+        console.log(data);
+      });
+    const orders = [];
+    for (const items of Object.keys(localStorage)) {
+      // console.log(items);
+      if (items !== 'authentication') {
+        orders.push(JSON.parse(localStorage[items]));
+      }
+    }
 
-  //   }
-
-  //   deleteItem(Itemid){
-  //     let items = this.cartService.getCart();
-  //     let selected = {}
-  //     let index = this.selectedItems.indexOf(Itemid)
-
-  //     items.splice(index, 1);
-
-  // }
+    for (const value of orders) {
+      console.log(value.id);
+      localStorage.removeItem(value.id);
+      localStorage.removeItem(value.id);
+    }
+  }
 }

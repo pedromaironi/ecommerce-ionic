@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ConfirmPageRoutingModule } from './confirm-routing.module';
 
 import { ConfirmPage } from './confirm.page';
+import { OrderService } from '../core/services/orders/order.service';
 
 @NgModule({
   imports: [
@@ -14,6 +15,8 @@ import { ConfirmPage } from './confirm.page';
     FormsModule,
     IonicModule,
     ConfirmPageRoutingModule
+  ], providers: [
+    OrderService
   ],
   declarations: [ConfirmPage]
 })

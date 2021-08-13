@@ -30,7 +30,7 @@
           <p>${{product.price}}</p>
 
           <div class="qty-selector">
-            <ion-button fill="clear" (click)="decreaseQuantity(product)">-</ion-button>
+            <ion-button fill="clear" (click)="decreaseQuantity(product, product.quantity)">-</ion-button>
             <ion-label>{{product.quantity}}</ion-label>
             <ion-button fill="clear" (click)="increaseQuantity(product)">+</ion-button>
           </div>
@@ -55,7 +55,7 @@
 <ion-footer translucent="true" class="ion-no-border" mode="md"
   *ngIf="cartCount">
   <ion-toolbar color="translucent">
-    <ion-button expand="block" class="main-button" routerLink="/confirm" (click)="addOrder()"
+    <ion-button expand="block" class="main-button" (click)="addOrder()"
       routerDirection="forward">Continue</ion-button>
   </ion-toolbar>
 </ion-footer>
