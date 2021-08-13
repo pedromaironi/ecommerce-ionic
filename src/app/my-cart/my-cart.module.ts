@@ -9,10 +9,11 @@ import { MyCartPageRoutingModule } from './my-cart-routing.module';
 import { MyCartPage } from './my-cart.page';
 import { CartService } from '../core/services/cart/cart.service';
 import { ProductsService } from '../core/services/products/products.service';
+import { OrderService } from '../core/services/orders/order.service';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, MyCartPageRoutingModule],
-  providers: [CartService, ProductsService],
+  providers: [CartService, ProductsService, OrderService],
   declarations: [MyCartPage],
 })
 export class MyCartPageModule {}

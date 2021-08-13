@@ -202,11 +202,10 @@ export class MyCartPage implements OnInit {
     this.orderService
       .createNewOrder(this.products, this.productTotal)
       .subscribe((data) => {
-        console.log(data);
+        // console.log(data);
       });
     const orders = [];
     for (const items of Object.keys(localStorage)) {
-      // console.log(items);
       if (items !== 'authentication') {
         orders.push(JSON.parse(localStorage[items]));
       }
@@ -214,7 +213,6 @@ export class MyCartPage implements OnInit {
 
     for (const value of orders) {
       console.log(value.id);
-      localStorage.removeItem(value.id);
       localStorage.removeItem(value.id);
     }
   }

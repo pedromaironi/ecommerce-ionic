@@ -14,4 +14,5 @@ import { OrderService } from '../core/services/orders/order.service';
   providers: [OrderService],
   declarations: [MyOrdersPage],
 })
-export class MyOrdersPageModule {}
+export class MyOrdersPageModule {
+}
