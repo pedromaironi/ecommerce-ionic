@@ -37,19 +37,15 @@ export class MyCartPage implements OnInit {
 
   initCart() {
     let bandVerifyLength = false;
-
     if (localStorage.length === 1) {
       if (Object.keys(localStorage).toString() === 'authentication') {
-        console.log(true);
         bandVerifyLength = true;
       }
     }
     if (localStorage.length > 0 && bandVerifyLength === false) {
       this.cartCount = true;
       for (const items of Object.keys(localStorage)) {
-        // console.log(items);
         if (items === 'authentication') {
-          // console.log('a');
           this.cartCount = false;
         } else {
           this.cartCount = true;
@@ -72,8 +68,6 @@ export class MyCartPage implements OnInit {
 
     if (product.quantity > 1) {
       for (this.Items of this.products) {
-        // console.log(this.Items);
-        // console.log(this.i);
         if (this.Items.name === product.name) {
           product.quantity =
             Number.parseFloat(product.quantity.toString()) -
@@ -91,18 +85,12 @@ export class MyCartPage implements OnInit {
               totalMultiplied.push(Number.parseFloat(priceProduct.toString()));
               totalMultiplied.push(Number.parseFloat(this.Items.price));
             });
-          // console.log(JSON.parse(productNew[0]).price);
-          // console.log(totalMultiplied);
-          // this.Items.price = 1;
           this.Items.price = totalMultiplied.reduce((a: number, b: number) =>
             Math.abs(a - b)
           );
-          // console.log(this.Items.price);
-          // this.totalPaid.push(Number.parseFloat(this.Items.price));
         }
         arrayNew.push(this.Items);
       }
-      // console.log(arrayNew);
       this.products = [];
       this.totalPaid = [];
       for (this.Items of arrayNew) {
@@ -121,13 +109,8 @@ export class MyCartPage implements OnInit {
     const arrayNew = [];
     let priceProduct: number;
     const totalMultiplied = [];
-    // console.log(this.products);
-    // console.log(product.price * this.quantity);
-    // console.log(product.name);
 
     for (this.Items of this.products) {
-      // console.log(this.Items);
-      // console.log(this.i);
       if (this.Items.name === product.name) {
         product.quantity =
           Number.parseFloat(product.quantity.toString()) +
@@ -145,18 +128,12 @@ export class MyCartPage implements OnInit {
             totalMultiplied.push(Number.parseFloat(priceProduct.toString()));
             totalMultiplied.push(Number.parseFloat(this.Items.price));
           });
-        // console.log(JSON.parse(productNew[0]).price);
-        // console.log(totalMultiplied);
-        // this.Items.price = 1;
         this.Items.price = totalMultiplied.reduce(
           (a: number, b: number) => a + b
         );
-        // console.log(this.Items.price);
-        // this.totalPaid.push(Number.parseFloat(this.Items.price));
       }
       arrayNew.push(this.Items);
     }
-    // console.log(arrayNew);
     this.products = [];
     this.totalPaid = [];
     for (this.Items of arrayNew) {
@@ -181,13 +158,11 @@ export class MyCartPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Confirm Cancel: blah');
           },
         },
         {
           text: 'Realizar orden',
           handler: () => {
-            console.log('Confirm Okay');
             this.router.navigateByUrl('/confirm');
             this.createOrder();
           },
@@ -202,7 +177,6 @@ export class MyCartPage implements OnInit {
     this.orderService
       .createNewOrder(this.products, this.productTotal)
       .subscribe((data) => {
-        // console.log(data);
       });
     const orders = [];
     for (const items of Object.keys(localStorage)) {
@@ -212,7 +186,6 @@ export class MyCartPage implements OnInit {
     }
 
     for (const value of orders) {
-      console.log(value.id);
       localStorage.removeItem(value.id);
     }
   }

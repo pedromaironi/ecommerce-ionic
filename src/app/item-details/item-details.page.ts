@@ -36,7 +36,6 @@ export class ItemDetailsPage implements OnInit {
   }
 
   addToCart(product: Products) {
-    console.log(product);
     const arrayOfProducts = [];
     arrayOfProducts.push(product);
     localStorage.setItem(product.id, JSON.stringify(product));

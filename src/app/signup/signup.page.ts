@@ -34,11 +34,8 @@ export class SignupPage implements OnInit {
         .registerUsers(data)
         .toPromise()
         .then((datas) => {
-          console.log(datas);
         });
-      console.log(response);
     } else {
-      console.log('as');
       this.bandLoggin = false;
       this.bandValidate = true;
     }

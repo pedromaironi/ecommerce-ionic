@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-buttons class="backbtn" routerLink="/orders" routerDirection="back">
+        <img src="../../assets/back-dark.svg" />
+      </ion-buttons>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button class="notification">
+        <ion-icon name="notifications-outline" color="dark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <h1 class="title">Detalle de orden</h1>
+  <h2 class="subtitle">{{ordersToShow.orderTime | date}}</h2>
+
+  <div class="cart-items">
+    <!-- *ngFor="let order of ordersToShow" -->
+    <ion-card mode="ios"  *ngFor="let order of orders" >
+      <ion-card-content>
+        <div class="item-img">
+          <img src="{{order.image}}" />
+        </div>
+
+        <div class="item-info">
+          <p>{{order.name}}</p>
+          <p>Cantidad: {{order.quantity}}</p>
+          <p>${{order.price}}</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+  <h3 class="title">${{ordersToShow.total | number:'2.1-4'}}</h3>
+</ion-content>

@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Categories } from '../core/models/categories.interface';
@@ -29,21 +30,14 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit()  {
-    // this.categories = this.data.getCategories();
     this.categoriesService.getAllCategories().subscribe((data) => {
-      // console.log((data));
-
       for ( const itemsCategories of Object.keys(data)) {
-        console.log(data[itemsCategories]);
         this.categories = data[itemsCategories];
       }
     });
 
     this.productsService.getAllProducts().subscribe((data) => {
-      // console.log((data));
-
       for ( const itemsProducts of Object.keys(data)) {
-        console.log(data[itemsProducts]);
         this.featuredProducts = data[itemsProducts];
         this.bestSellProducts = data[itemsProducts];
       }
@@ -51,12 +45,6 @@ export class HomePage implements OnInit {
   }
 
   goToItemsDetails(product , nameProduct: string) {
-    console.log(product);
-    // console.log(nameProduct);
-    // this.navCtrl. ('/item-details');
-    // this.navCtrl.navigateRoot('/itemdetails');
-    // this.navCtrl.navigateForward('/itemdetails', product);
-    // eslint-disable-next-line no-underscore-dangle
     this.product._product = product;
   }
 

@@ -38,12 +38,6 @@ export class LoginPage implements OnInit {
   async initUsers() {}
 
   async getUsers() {
-    // console.log(
-    //   await this.authService
-    //     .getUsers()
-    //     .toPromise()
-    //     .then((data) => data)
-    // );
     await this.authService
       .getUsers()
       .toPromise()
@@ -53,9 +47,6 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    // Enabling Side Menu
-    // this.util.setMenuState(true);
-    console.log(this.email);
     if (this.email !== undefined && this.password !== undefined) {
       let userObject;
       for (const items of Object.keys(this.arrayUsers)) {
@@ -65,8 +56,6 @@ export class LoginPage implements OnInit {
       }
       userObject = JSON.parse(this.usersObjectArray[0]);
       for (let i of userObject) {
-        console.log(i.password);
-        console.log(i.email);
         if (i.email === this.email) {
           if (i.password === this.password) {
             this.bandLoggin = true;
@@ -84,7 +73,6 @@ export class LoginPage implements OnInit {
         }
       }
     } else {
-      console.log('as');
       this.bandLoggin = false;
       this.bandValidate = true;
     }

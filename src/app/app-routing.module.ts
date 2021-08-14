@@ -19,6 +19,11 @@ const routes: Routes = [
       import('./login/login.module').then((m) => m.LoginPageModule),
   },
   {
+    path: 'order-detail',
+    loadChildren: () =>
+      import('./order-detail/order-detail.module').then((m) => m.OrderDetailPageModule),
+  },
+  {
     path: 'orders',
     loadChildren: () =>
       import('./my-orders/my-orders.module').then((m) => m.MyOrdersPageModule),
@@ -57,6 +62,10 @@ const routes: Routes = [
     path: 'checkout',
     loadChildren: () =>
       import('./my-cart/my-cart.module').then((m) => m.MyCartPageModule),
+  },
+  {
+    path: 'order-detail',
+    loadChildren: () => import('./order-detail/order-detail.module').then( m => m.OrderDetailPageModule)
   },
 ];
 @NgModule({

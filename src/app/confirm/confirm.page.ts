@@ -20,23 +20,7 @@ export class ConfirmPage implements OnInit {
   }
 
   async sendOrder() {
-    // for (const items of Object.keys(localStorage)) {
-    //   // console.log(items);
-    //   if (items !== 'authentication') {
-    //     this.orders.push(JSON.parse(localStorage[items]));
-    //   }
-    // }
-    // console.log(this.orders);
-    // await this.orderService
-    //   .getAllOrders()
-    //   .subscribe((value) => {
-    //     // console.log(value.nameUser);
-    //     // console.log(value);
-    //     for (const items of Object.keys(value)) {
-    //       console.log(value[items]);
-    //     }
-    //     // console.log(value.products);
-    //   });
+
   }
 
 }

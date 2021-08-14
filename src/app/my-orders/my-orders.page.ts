@@ -1,6 +1,9 @@
+/* eslint-disable no-underscore-dangle */
 import { Component, OnInit } from '@angular/core';
+import { Orders } from '../core/models/order.interface';
 import { OrderDetail } from '../core/models/orderdetail.interface';
 import { Users } from '../core/models/user.interface';
+import { OrdersObject } from '../core/services/orders/order';
 import { OrderService } from '../core/services/orders/order.service';
 
 @Component({
@@ -15,35 +18,39 @@ export class MyOrdersPage implements OnInit {
   arrayOfOrders = [];
   ordersOfUser = [];
   username: string;
-  constructor(private orderService: OrderService) {}
+  orderObject: OrdersObject;
+
+  constructor(private orderService: OrderService) {
+    this.orderObject = new OrdersObject();
+  }
+
   async ngOnInit() {
     await this.getAllOrders();
   }
 
   getAllOrders() {
     for (const items of Object.keys(localStorage)) {
-      // console.log(items);
       if (items === 'authentication') {
         const obj = JSON.parse(localStorage[items]);
         this.username = obj.name;
       }
     }
+
     this.orderService.getAllOrders().subscribe((value) => {
-      // console.log(value);
       for (const items of Object.keys(value)) {
         if (items === 'data') {
           for (const i of value[items]) {
-            this.arrayOfOrders.push(i);
+            if (i.nameUser === this.username) {
+              this.arrayOfOrders.push(i);
+            }
           }
         }
       }
     });
-    let num = 0;
-    for (const i of this.arrayOfOrders) {
-      if (i.name === this.username) {
-        this.ordersToShow.push(i);
-      }
-    }
+  }
+
+  goToItemsDetails(order: Orders) {
+    this.orderObject._order = order;
   }
 
   randomNumber() {
